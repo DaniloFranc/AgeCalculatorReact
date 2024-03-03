@@ -35,7 +35,7 @@ validateInputs = () => {
   const isLeapYear = (valueYear % 4 === 0 && valueYear % 100 !== 0) || valueYear % 400 === 0;
   const maxDaysInMonth = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-  const isInvalidMonth = valueMonth < 0 || valueMonth > 11;
+  const isInvalidMonth = valueMonth < 1 || valueMonth > 11;
   const isInvalidDay = valueDay < 1 || valueDay > maxDaysInMonth[valueMonth];
   const isInvalidYear = valueYear > 2023;
 
