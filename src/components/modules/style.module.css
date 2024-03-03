@@ -183,7 +183,7 @@
     justify-content: center;
     align-items: center;
     background-color: #f2f2f2;
-    padding: 60px;
+    padding: 5.5vw;
     
 
 }
@@ -195,3 +195,11 @@
 
 }
 
+
+.highlight-border {
+
+    font-family: 'Poppins-ExtraBold', sans-serif;
+    border-color: hsl(0, 100%, 67%);  
+    color: hsl(0, 100%, 67%);
+
+}

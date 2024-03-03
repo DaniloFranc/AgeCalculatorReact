@@ -4,7 +4,7 @@ import Icon from '../icons/icon-arrow.svg';
 
 export default class Mid extends Component {
   handleButtonClick = () => {
-    // Chame a função calculateAge passada como propriedade
+   
     this.props.handleButtonClick();
   };
 

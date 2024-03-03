@@ -1,4 +1,3 @@
-// Body.js
 import React, { Component } from "react";
 import styles from '../components/modules/style.module.css';
 import Head from "./Head";
@@ -15,6 +14,7 @@ export default class Body extends Component {
       displayYear: "--",
       displayMonth: "--",
       displayDay: "--",
+      isValidationEnabled: false,
     };
   }
 
@@ -23,33 +23,43 @@ export default class Body extends Component {
   };
 
   calculateAge = () => {
-    const { day, month, year } = this.state;
+    const { day, month, year, isValidationEnabled } = this.state;
 
-    // Obtendo a data de nascimento do usuário
-    const birthDate = new Date(`${year}-${month}-${day}`);
+    
+    this.setState({ isValidationEnabled: true });
 
-    // Obtendo a data atual
-    const currentDate = new Date();
+    
+    if (isValidationEnabled) {
+      const isValid = this.headRef.validateInputs();
 
-    // Calculando a diferença em milissegundos
-    const ageInMilliseconds = currentDate - birthDate;
+     
+      if (isValid) {
+        
+        const birthDate = new Date(`${year}-${month}-${day}`);
 
-    // Convertendo a diferença para anos, meses e dias
-    const ageInYears = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
-    const ageInMonths = Math.floor(ageInMilliseconds / (30.44 * 24 * 60 * 60 * 1000));
-    const ageInDays = Math.floor(ageInMilliseconds / (24 * 60 * 60 * 1000));
+       
+        const currentDate = new Date();
 
-    // Calculando a diferença em dias, meses e anos específicos
-    const years = Math.floor(ageInDays / 365);
-    const months = Math.floor((ageInDays % 365) / 30);
-    const days = ageInDays % 30;
+        const ageInMilliseconds = currentDate - birthDate;
 
-    // Atualizando os estados
-    this.setState({
-      displayYear: years,
-      displayMonth: months,
-      displayDay: days,
-    });
+        
+        const ageInYears = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
+        const ageInMonths = Math.floor(ageInMilliseconds / (30.44 * 24 * 60 * 60 * 1000));
+        const ageInDays = Math.floor(ageInMilliseconds / (24 * 60 * 60 * 1000));
+
+        
+        const years = Math.floor(ageInDays / 365);
+        const months = Math.floor((ageInDays % 365) / 30);
+        const days = ageInDays % 30;
+
+        
+        this.setState({
+          displayYear: years,
+          displayMonth: months,
+          displayDay: days,
+        });
+      }
+    }
   };
 
   render() {
@@ -60,6 +70,7 @@ export default class Body extends Component {
         <body className={styles.container}>
           <div className={styles.content}>
             <Head
+              ref={(ref) => (this.headRef = ref)}
               day={day}
               month={month}
               year={year}
@@ -77,5 +88,5 @@ export default class Body extends Component {
         </body>
       </>
     );
-  };
-};
+  }
+}
