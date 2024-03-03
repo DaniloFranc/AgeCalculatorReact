@@ -43,8 +43,6 @@ export default class Body extends Component {
         const ageInMilliseconds = currentDate - birthDate;
 
         
-        const ageInYears = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
-        const ageInMonths = Math.floor(ageInMilliseconds / (30.44 * 24 * 60 * 60 * 1000));
         const ageInDays = Math.floor(ageInMilliseconds / (24 * 60 * 60 * 1000));
 
         
